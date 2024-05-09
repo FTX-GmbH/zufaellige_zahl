@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zufällige Zahl zwischen</title>
+    <title>FTX Zufällige Zahl</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
         label {
             display: block;
             margin-bottom: 10px;
-            font-weight: bold; /* Hinzugefügt: Fettgedruckte Labels */
+            font-weight: bold;
         }
         input[type="number"] {
             width: 100%;
@@ -83,7 +83,6 @@
                 zufälligeZahl = Math.floor(Math.random() * (und - zwischen + 1)) + zwischen;
             }
 
-            // Runde die Zufallszahl auf die gewünschte Anzahl der Nachkommastellen
             const gerundeteZahl = zufälligeZahl.toFixed(nachkommastellen);
 
             document.getElementById('result').textContent = `Ich wähle die Nummer: ${gerundeteZahl}`;
