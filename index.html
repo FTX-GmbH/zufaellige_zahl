@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufällige Zahl zwischen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold; /* Hinzugefügt: Fettgedruckte Labels */
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-size: 24px;
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zufällige Zahl zwischen</h1>
+    <label for="zwischen">Minimal:</label>
+    <input type="number" id="zwischen" min="0">
+    <br>
+    <label for="und">Maximal:</label>
+    <input type="number" id="und" min="0">
+    <br>
+    <label for="nachkommastellen">Nachkommastellen:</label>
+    <input type="number" id="nachkommastellen" min="0">
+    <br>
+    <label for="kommazahlen">Kommazahlen verwenden:</label>
+    <input type="checkbox" id="kommazahlen">
+    <br>
+    <button onclick="wähleZufälligeZahl()">Zufällige Zahl auswählen</button>
+    <div id="result"></div>
+
+    <script>
+        function wähleZufälligeZahl() {
+            const zwischen = parseFloat(document.getElementById('zwischen').value);
+            const und = parseFloat(document.getElementById('und').value);
+            const nachkommastellen = parseInt(document.getElementById('nachkommastellen').value);
+            const kommazahlen = document.getElementById('kommazahlen').checked;
+
+            if (isNaN(zwischen) || isNaN(und)) {
+                alert('Bitte gib gültige Zahlen ein.');
+                return;
+            }
+
+            let zufälligeZahl;
+            if (kommazahlen) {
+                zufälligeZahl = Math.random() * (und - zwischen) + zwischen;
+            } else {
+                zufälligeZahl = Math.floor(Math.random() * (und - zwischen + 1)) + zwischen;
+            }
+
+            // Runde die Zufallszahl auf die gewünschte Anzahl der Nachkommastellen
+            const gerundeteZahl = zufälligeZahl.toFixed(nachkommastellen);
+
+            document.getElementById('result').textContent = `Ich wähle die Nummer: ${gerundeteZahl}`;
+        }
+    </script>
+</body>
+</html>
